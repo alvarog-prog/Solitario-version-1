@@ -1,6 +1,4 @@
-//Álvaro Gil Arjona
-//Víctor Verdú García
-//Grupo: LAB 11 G12
+
 
 #include "juego.h"
 #include "movimiento.h"
@@ -8,7 +6,7 @@
 using namespace std;
 
 
-//Funciones privadas del módulo juego
+//Funciones privadas del mÃ³dulo juego
 void actualizaEstado(tJuego& juego);
 bool ganador(const tJuego& juego);
 bool hayMovimientos(const tJuego& juego);
@@ -105,17 +103,17 @@ void generar(tJuego& juego, int pasos) {//Crea el tablero aleatorio, poniendo to
 	int fila, col, filMeta,colMeta;
 	srand(time(NULL));
 	
-	fila = 4 + rand() % (MAX - 3);//Generación aleatoria del tamaño de las filas.
-	col = 4 + rand() % (MAX - 3);//Generación aleatoria del tamaño de las columnas.
+	fila = 4 + rand() % (MAX - 3);//GeneraciÃ³n aleatoria del tamaÃ±o de las filas.
+	col = 4 + rand() % (MAX - 3);//GeneraciÃ³n aleatoria del tamaÃ±o de las columnas.
 	reseteaTablero(juego.tablero,fila,col);//Que todas las posiciones sean nulas.
-	filMeta = rand() % fila;//Generación aleatoria de la fila en la que estará la meta.
-	colMeta = rand() % col;//Generación aleatoria de la columna en la que estará la meta.
+	filMeta = rand() % fila;//GeneraciÃ³n aleatoria de la fila en la que estarÃ¡ la meta.
+	colMeta = rand() % col;//GeneraciÃ³n aleatoria de la columna en la que estarÃ¡ la meta.
 
-	ponMeta(juego.tablero, filMeta, colMeta);//Colocamos la meta en dicha posición creada aleatoriamente.
+	ponMeta(juego.tablero, filMeta, colMeta);//Colocamos la meta en dicha posiciÃ³n creada aleatoriamente.
 	ponCelda(juego.tablero, filMeta, colMeta, FICHA);//La rellenamos con una ficha.
 	
 	cout << "Cuantos pasos quieres realizar:" << endl;
-	cin >> pasos;//Se solicita por pantalla el número de pasos que se quiere dar(no tiene porque dar todos).
+	cin >> pasos;//Se solicita por pantalla el nÃºmero de pasos que se quiere dar(no tiene porque dar todos).
 	int i = 0;
 	while (i < pasos) {
 		mostrar(juego);
@@ -153,4 +151,5 @@ bool movimientoInverso(tJuego& juego) {//Devuelve si se ha podido realizar el mo
 
 tEstado estado(tJuego juego) {
 	return juego.estado;
+
 }
