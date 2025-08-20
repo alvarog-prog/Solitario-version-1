@@ -1,6 +1,4 @@
-//Álvaro Gil Arjona
-//Víctor Verdú García
-//Grupo: LAB 11 G12
+
 
 #include "movimiento.h"
 #include "tablero.h"
@@ -12,7 +10,7 @@ using namespace std;
 
 
 
-//Funciones privadas del módulo movimiento
+//Funciones privadas del mÃ³dulo movimiento
 
 bool movimientosPosibles(const tTablero& tablero, int fila, int col, tMovimientoLista& listaMov);  // privado
 string enumToString(tDireccion dir);
@@ -26,7 +24,7 @@ tMovimiento leeMovimiento(const tTablero& tablero, int& fila, int& col) {
 	tMovimiento x;
 	while (!ok) {
 	cout << "Selecciona una ficha para mover (Fila  Columna): "; cin >> fila; cout << " "; cin >> col;//Solicitamos al usuario una fila y una columna.
-	fila--;//Le restamos uno para que lea bien la posición en el array.
+	fila--;//Le restamos uno para que lea bien la posiciÃ³n en el array.
 	col--;
 	
 		if (eleccionValida(tablero, fila, col)) {
@@ -67,7 +65,7 @@ bool movimientosPosibles(const tTablero& tablero, int fila, int col, tMovimiento
 	bool valido = false;
 	listaMov.contador = 0;
 	for (tDireccion dir = ARRIBA; dir <= IZQUIERDA; dir = tDireccion(dir + 1)) {
-		celda = moviendo(dir, fila, col);//que recorra todas las direcciones y así compruebe hacia cuales podría desplazarse.
+		celda = moviendo(dir, fila, col);//que recorra todas las direcciones y asÃ­ compruebe hacia cuales podrÃ­a desplazarse.
 		if (valida(tablero, celda.filaSaltada, celda.colSaltada) && dameCelda(tablero, celda.filaSaltada, celda.colSaltada) == FICHA &&
 			valida(tablero, celda.filaDestino, celda.colDestino) && dameCelda(tablero, celda.filaDestino, celda.colDestino) == VACIA) {
 			listaMov.posibles[listaMov.contador] = celda;//Guardamos el movimiento en la lista.
@@ -75,7 +73,7 @@ bool movimientosPosibles(const tTablero& tablero, int fila, int col, tMovimiento
 			valido = true;
 
 		}
-		if (listaMov.contador == 0) {//No hay ningún movimiento
+		if (listaMov.contador == 0) {//No hay ningÃºn movimiento
 			valido = false;
 		}
 	}
@@ -83,7 +81,7 @@ bool movimientosPosibles(const tTablero& tablero, int fila, int col, tMovimiento
 }
 
 string enumToString(tDireccion dir) {
-	switch (dir) {//En vez de aparecer números, ponga la dirección.
+	switch (dir) {//En vez de aparecer nÃºmeros, ponga la direcciÃ³n.
 	case ARRIBA:
 		return "ARRIBA";
 	case ABAJO:
@@ -128,19 +126,19 @@ return listaMov.posibles[respuesta- 1];
 
 }
 
-bool fichaBloqueada(const tTablero& tablero, int fila, int col) {//Comprueba si puedo o no realizar algún movimiento.
+bool fichaBloqueada(const tTablero& tablero, int fila, int col) {//Comprueba si puedo o no realizar algÃºn movimiento.
 	tMovimiento mov;
 	bool puede = true;
 	tDireccion dir = ARRIBA;
 	while (dir <= IZQUIERDA && puede) {//Recorra todas las direcciones mientras puede sea true.
 		mov = moviendo(dir, fila, col);
 		if (dameCelda(tablero,mov.filaSaltada,mov.colSaltada) == FICHA && dameCelda(tablero,mov.filaDestino,mov.colDestino) == VACIA) {
-			puede = false;//Si la posición saltada tiene ficha y la destino está vacía, puedes mover.(Sales del bucle porque ya sabemos que podemos hacer al menos un movimiento)
+			puede = false;//Si la posiciÃ³n saltada tiene ficha y la destino estÃ¡ vacÃ­a, puedes mover.(Sales del bucle porque ya sabemos que podemos hacer al menos un movimiento)
 		}
 		else {
 			puede = true;
 		}
-		dir = tDireccion(dir + 1);//Siguiente dirección.
+		dir = tDireccion(dir + 1);//Siguiente direcciÃ³n.
 	}
 	return puede;
 }
@@ -179,9 +177,9 @@ else { //IZQUIERDA
 
 void movimientoFicha(tTablero& tablero, int fila, int col, const tMovimiento& mov) {//Realiza el movimiento.
 	ponCelda(tablero, fila, col,tablero.celdas[fila][col]);
-	ponCelda(tablero, fila, col, VACIA);//Ponga la posición en la que nos situábamos como vacía.
-	ponCelda(tablero, mov.filaSaltada, mov.colSaltada, VACIA);//La posición que saltamos por encima como vacía.
-	ponCelda(tablero, mov.filaDestino, mov.colDestino, FICHA);//La posición a la que nos desplazamos la complete con una ficha.
+	ponCelda(tablero, fila, col, VACIA);//Ponga la posiciÃ³n en la que nos situÃ¡bamos como vacÃ­a.
+	ponCelda(tablero, mov.filaSaltada, mov.colSaltada, VACIA);//La posiciÃ³n que saltamos por encima como vacÃ­a.
+	ponCelda(tablero, mov.filaDestino, mov.colDestino, FICHA);//La posiciÃ³n a la que nos desplazamos la complete con una ficha.
 }
 
 bool eligeMovimientoInverso(const tTablero& tablero, int fila, int col, tMovimiento& mov) {//Crea una lista con los movimientos posibles de realizar.
@@ -189,9 +187,9 @@ bool eligeMovimientoInverso(const tTablero& tablero, int fila, int col, tMovimie
 	tMovimientoLista lista;
 	lista.contador = 0;
 	for (tDireccion dir = ARRIBA; dir <= IZQUIERDA; dir = tDireccion(dir + 1)) {//Recorremos todas las direcciones.
-		mov = moviendo(dir, fila, col);//Que el movimiento compruebe cada dirección.
+		mov = moviendo(dir, fila, col);//Que el movimiento compruebe cada direcciÃ³n.
 		if (mov.filaSaltada < numFilas(tablero) - 1 && mov.filaDestino < numFilas(tablero)- 1&& mov.colSaltada < numColumnas(tablero) - 1 && mov.colDestino < numColumnas(tablero) - 1 && mov.filaSaltada >= 0
-			&& mov.filaDestino >= 0 && mov.colSaltada >= 0 && mov.colDestino >= 0){//La fila y columna saltada y destino estén dentro del tablero.
+			&& mov.filaDestino >= 0 && mov.colSaltada >= 0 && mov.colDestino >= 0){//La fila y columna saltada y destino estÃ©n dentro del tablero.
 			if (dameCelda(tablero, mov.filaSaltada, mov.colSaltada) != FICHA &&//La fila  y columna saltada y la destino no tengan ficha.
 				dameCelda(tablero, mov.filaDestino, mov.colDestino) != FICHA) {
 				lista.posibles[lista.contador] = mov;//Metemos el movimiento en la lista.
@@ -205,14 +203,15 @@ bool eligeMovimientoInverso(const tTablero& tablero, int fila, int col, tMovimie
 	}
 	else {//En el caso que haya, que eliga aleatoriamente cual realizar.
 		int contNuevo = rand() % lista.contador;
-		mov = lista.posibles[contNuevo];//Lo meta de nuevo, en la posición del nuevo contador.
+		mov = lista.posibles[contNuevo];//Lo meta de nuevo, en la posiciÃ³n del nuevo contador.
 		existe = true;
 	}
 	return existe;
 }
 
 void realizaMovimientoInverso(tTablero& tablero, int fila, int col, const tMovimiento& mov) {//Realiza el movimiento inverso.
-	ponCelda(tablero,fila,col,VACIA);//La posición en la que estábamos la ponga vacía.
-	ponCelda(tablero,mov.filaSaltada,mov.colSaltada, FICHA);//La posición a la que saltamos por encima la rellene con ficha.
-	ponCelda(tablero,mov.filaDestino,mov.colDestino, FICHA);//La posición a la que nos desplazamos la rellene con ficha.
+	ponCelda(tablero,fila,col,VACIA);//La posiciÃ³n en la que estÃ¡bamos la ponga vacÃ­a.
+	ponCelda(tablero,mov.filaSaltada,mov.colSaltada, FICHA);//La posiciÃ³n a la que saltamos por encima la rellene con ficha.
+	ponCelda(tablero,mov.filaDestino,mov.colDestino, FICHA);//La posiciÃ³n a la que nos desplazamos la rellene con ficha.
+
 }
