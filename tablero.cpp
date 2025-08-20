@@ -1,6 +1,4 @@
-//Álvaro Gil Arjona
-//Víctor Verdú García
-//Grupo: LAB 11 G12LAB 11 G12
+
 
 #include "tablero.h"
 #include "juego.h"
@@ -29,9 +27,9 @@ const char LowerCross = char(193);
 const char LowerRight = char(217);
 const char Square = char(219);
 
-//Funciones privadas de módulo tablero:
+//Funciones privadas de mÃ³dulo tablero:
 
-// dibuja la cabecera de la tabla (nº de las columnas)
+// dibuja la cabecera de la tabla (nÂº de las columnas)
 void dibujaCabecera(const tTablero& tablero);
 void dibujaBordeHorizontal(const tTablero& tablero, char left, char cross, char right);
 // dibuja la banda exterior de las celdas de una fila del tablero
@@ -73,7 +71,7 @@ void mostrar(const tTablero& tablero) {
 }
 
 
-// dibuja la cabecera de la tabla (nº de las columnas)
+// dibuja la cabecera de la tabla (nÂº de las columnas)
 void dibujaCabecera(const tTablero& tablero) {
 	cout << setw(2) << "    ";
 	cout << setw(5) << 1;
@@ -92,14 +90,14 @@ void dibujaBordeHorizontal(const tTablero& tablero, char left, char cross, char 
 
 
 void dibujaBordeCelda(const tTablero& tablero, int fila) {
-	cout << "    ";  // para llegar a la posición de la tabla
+	cout << "    ";  // para llegar a la posiciÃ³n de la tabla
 	for (int k = 0; k < tablero.cols; k++) { // para cada columna
 		cout << Vertical; // pintamos barra vertical
 		if (tablero.filaMeta == fila && tablero.colMeta == k) // si contiene meta: fondo naranja
 			cout << BG_ORANGE;
 		else if (tablero.celdas[fila][k] == NULA) // si es celda NULA: fondo negro
 			cout << BG_BLACK;
-		else // si es útil (con o sin ficha): fondo marrón
+		else // si es Ãºtil (con o sin ficha): fondo marrÃ³n
 			cout << BG_BROWN;
 		cout << "      "; // pintamos la banda
 		cout << Reset;
@@ -110,20 +108,20 @@ void dibujaBordeCelda(const tTablero& tablero, int fila) {
 
 // dibuja la banda central de las celdas de una fila del tablero
 void dibujaCentroCelda(const tTablero& tablero, int fila) {
-	cout << "  " << setw(2) << fila + 1;  // pintamos el nº de fila
+	cout << "  " << setw(2) << fila + 1;  // pintamos el nÂº de fila
 	for (int k = 0; k < tablero.cols; k++) { // para cada columna
 		cout << Vertical; // pintamos barra vertical
 		if (tablero.celdas[fila][k] == NULA) { // si es celda NULA: fondo negro y pintamos
 			cout << BG_BLACK;
 			cout << "      ";
 		}
-		else { // para celda útil
+		else { // para celda Ãºtil
 			if (tablero.filaMeta == fila && tablero.colMeta == k)  // si contiene la meta: fondo naranja
 				cout << BG_ORANGE;
-			else  // si no contiene la meta: fondo marrón
+			else  // si no contiene la meta: fondo marrÃ³n
 				cout << BG_BROWN;
 			cout << "  "; // pintamos la primera parte de la banda
-			if (tablero.celdas[fila][k] == VACIA)  // si está vacía: primer plano negro
+			if (tablero.celdas[fila][k] == VACIA)  // si estÃ¡ vacÃ­a: primer plano negro
 				cout << FG_BLACK;
 			else  // si tiene ficha: primer plano azul
 				cout << FG_BLUE;
@@ -140,7 +138,7 @@ void dibujaCentroCelda(const tTablero& tablero, int fila) {
 	cout << Vertical << endl;  // pintamos la barra vertical
 }
 
-bool valida(const tTablero& tablero, int fila, int col) {//Comprobar  que la posicion está dentro del tablero
+bool valida(const tTablero& tablero, int fila, int col) {//Comprobar  que la posicion estÃ¡ dentro del tablero
 	bool valido = false;
 	if (fila >= 0 && fila <= tablero.filas) {
 		if (col >= 0 && col <= tablero.cols) {
@@ -153,7 +151,7 @@ bool valida(const tTablero& tablero, int fila, int col) {//Comprobar  que la pos
 bool eleccionValida(const tTablero& tablero, int fila, int col) {
 	bool correcto = false;
 	if (valida(tablero, fila, col) && tablero.celdas[fila][col] == FICHA) {
-		correcto = true;//Si la posición está dentro del tablero y tiene una ficha, devuelve true 
+		correcto = true;//Si la posiciÃ³n estÃ¡ dentro del tablero y tiene una ficha, devuelve true 
 	}
 	return correcto;
 }
@@ -162,7 +160,7 @@ void ponCelda(tTablero& tablero, int fila, int col, tCelda celda) {
 	tablero.celdas[fila][col] = celda;
 }
 
-tCelda dameCelda(const tTablero& tablero, int fila, int col) {//Devuelvo el contenido de dicha posición(NULA,VACÍA o FICHA)
+tCelda dameCelda(const tTablero& tablero, int fila, int col) {//Devuelvo el contenido de dicha posiciÃ³n(NULA,VACÃA o FICHA)
 	tCelda contenido{};
 
 	if (tablero.celdas[fila][col] == NULA) {
@@ -191,16 +189,16 @@ void fichaAleatoria(const tTablero& tablero, int& fila, int& col) {
 	do {
 		fila = rand() % tablero.filas;
 		col = rand() % tablero.cols;
-	} while (tablero.celdas[fila][col] != FICHA);//Elige aleatoriamente una posición del tablero que tenga ficha.
+	} while (tablero.celdas[fila][col] != FICHA);//Elige aleatoriamente una posiciÃ³n del tablero que tenga ficha.
 }
 
 
 int numFilas(const tTablero& tablero) {
-	return tablero.filas;//Devuelvo el número de filas que tiene el tablero.
+	return tablero.filas;//Devuelvo el nÃºmero de filas que tiene el tablero.
 }
 
 int numColumnas(const tTablero& tablero) {
-	return tablero.cols;//Devuelve el número de columnas que tiene el tablero.
+	return tablero.cols;//Devuelve el nÃºmero de columnas que tiene el tablero.
 }
 
 void dameMeta(const tTablero& tablero, int& fila, int& col) {
@@ -211,4 +209,5 @@ void dameMeta(const tTablero& tablero, int& fila, int& col) {
 void ponMeta(tTablero& tablero, int fila, int col) {
 	tablero.filaMeta = fila;//Pone fila, como la fila de la meta.
 	tablero.colMeta = col;//Pone col, como la columna de la meta.
+
 }
