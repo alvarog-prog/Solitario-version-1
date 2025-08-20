@@ -1,6 +1,4 @@
-//Álvaro Gil Arjona
-//Víctor Verdú García
-//Grupo: LAB 11 G12
+
 
 #ifndef juego_h
 #define juego_h
@@ -19,12 +17,13 @@ struct tJuego {
 
 
 // Subprogramas del enunciado
-// IMPORTANTE: decide cuáles permanecen públicos y traslada los que creas que deben ser privados (si es el caso)
+// IMPORTANTE: decide cuÃ¡les permanecen pÃºblicos y traslada los que creas que deben ser privados (si es el caso)
 
 bool cargar(tJuego& juego, std::string nombre);
 void mostrar(const tJuego& juego);
 void ejecutarMovimiento(tJuego& juego);
 void generar(tJuego& juego, int pasos);
+
 
 
 
