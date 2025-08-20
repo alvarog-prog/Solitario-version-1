@@ -1,6 +1,3 @@
-//Álvaro Gil Arjona
-//Víctor Verdú García
-//Grupo:LAB 11 G12
 
 #include <iostream>
 #include <string>
@@ -21,14 +18,14 @@ char respuesta;
 int contNumPartidas = 1;
 int victorias = 0, derrotas = 0;
 tJuego juego;
-srand(time(NULL)); //Genera los números aleatorios
+srand(time(NULL)); //Genera los nÃºmeros aleatorios
 int pasos = 0;
 
   do {
 	
 	cout << "----------BIENVENIDO AL SOLITARIO----------" << endl;
 	cout << " " << endl;
-	cout << "Desea cargar de archivo un tablero (C) o generar un tablero aleatorio (A) :"; cin >> respuesta;//Hay que responder con a o c en mayúscula
+	cout << "Desea cargar de archivo un tablero (C) o generar un tablero aleatorio (A) :"; cin >> respuesta;//Hay que responder con a o c en mayÃºscula
 	if (respuesta == 'A') {
 		generar(juego, pasos);
 		cout << "Tablero aleatorio creado" << endl;
@@ -86,7 +83,7 @@ int pasos = 0;
 	boton = getchar();
 	boton = getchar();
 	cout << "-----------------------------" << endl;
-	cout<<"Desea jugar de nuevo (S / N)" << endl;//Hay que responder en mayúscula
+	cout<<"Desea jugar de nuevo (S / N)" << endl;//Hay que responder en mayÃºscula
 	cin >> respuesta;
 } while (respuesta != 'N');
 	cout << "GAME OVER" << endl;
@@ -103,7 +100,8 @@ int pasos = 0;
 string solicitaNombreFichero() {
 	string nombre;
 	cout << "Nombre del fichero: ";
-	cin >> nombre; // se introduce nombre, sin extensión
+	cin >> nombre; // se introduce nombre, sin extensiÃ³n
 	nombre = nombre + ".txt";
 	return nombre;
+
 }
